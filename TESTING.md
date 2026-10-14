@@ -7,7 +7,7 @@
 - 当前分发形式为仓库根目录的独立 skill，SKILL.md 正文未修改；不使用旧插件的安装命令。
 - 将仓库文件复制到临时项目的 `.agents/skills/maintain-project-state/`，使用新的 CLI 会话发现和调用。调用日志确认读取的是该项目的安装副本。
 - 已检查安装副本与源文件一致，名称/描述校验通过，agents/openai.yaml 可解析，图标路径存在；PNG 为 512×512，SVG 提供可编辑源图。
-- GitHub 根目录的 skill-installer 下载验证将在首次推送后执行。
+- 使用 skill-installer 从 GitHub 提交 `8fa1b64` 下载仓库根目录（`--path . --name maintain-project-state --method download`）；SKILL.md、LICENSE、展示配置和图标均与仓库一致。安装使用独立临时目录，没有覆盖已有 skill。
 
 ## 行为测试
 
