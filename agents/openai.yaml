@@ -1,0 +1,7 @@
+interface:
+  display_name: "Maintain Project State"
+  short_description: "Evidence-backed project state and handoffs"
+  icon_small: "./assets/icon.png"
+  icon_large: "./assets/icon.svg"
+  brand_color: "#18364D"
+  default_prompt: "Use $maintain-project-state to review this project's state without changing files."

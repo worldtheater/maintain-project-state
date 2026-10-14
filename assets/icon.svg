@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>Maintain Project State</title>
+  <rect width="512" height="512" rx="104" fill="#18364D"/>
+  <rect x="108" y="142" width="220" height="270" rx="28" fill="#89ABB9"/>
+  <rect x="144" y="102" width="220" height="270" rx="28" fill="#F3F7F8"/>
+  <path d="M190 170h128M190 217h98M190 264h72" fill="none" stroke="#18364D" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="354" cy="352" r="68" fill="#18364D"/>
+  <circle cx="354" cy="352" r="56" fill="#65D1AF"/>
+  <path d="m327 351 19 19 35-37" fill="none" stroke="#18364D" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
