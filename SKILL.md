@@ -1,16 +1,18 @@
 ---
 name: maintain-project-state
-description: Maintain a concise, evidence-backed project snapshot for orientation, handoff, and resumption across Codex sessions. Read it without mutation for status questions; reconcile or update it only when the user or repository instructions authorize maintenance.
+description: Maintain a concise, evidence-backed project snapshot for orientation, handoff, and resumption across coding-agent sessions. Read it without mutation for status questions; reconcile or update it only when the user or repository instructions authorize maintenance.
 ---
 
 # Maintain Project State
 
 Maintain one compact projection of the project's current reality so another session can continue without reconstructing the repository or depending on conversation history. Source code, tests, logs, protocol fixtures, and accepted design documents remain authoritative; the state file is a derived navigation and handoff artifact.
 
+Use with coding agents that can read project files and inspect Git. Updating state also requires write access to the selected state file.
+
 ## Locate and assess the state
 
 1. Resolve the user's project root, preferring the Git root.
-2. Use a user- or project-specified path; otherwise use `.codex/project-state.md` at that root.
+2. Use a user- or project-specified path; otherwise use `.codex/project-state.md` at that root. This configurable path convention can be shared by different agents; keep one state file rather than creating a separate copy per tool.
 3. Read the state before investigating broadly. Do not rewrite it merely because it was read.
 4. In a Git repository, inspect the current root, branch or worktree, and `git status --short`. If the state is meant to travel between checkouts or machines, verify that it is tracked.
 5. If the state is tracked, find its latest commit and inspect the commits and changed paths from that commit to `HEAD`, plus dirty changes. Treat recorded verification as evidence from the state snapshot, not automatically as evidence for a newer `HEAD`.
@@ -112,9 +114,9 @@ Prioritize active continuity, architectural invariants, confirmed risks and deci
 
 When the repository adopts this workflow:
 
-- Keep root `AGENTS.md` as a minimal bootstrap pointing to this skill and the state path.
+- Keep the project's agent instruction file (for example, root `AGENTS.md`) as a minimal bootstrap pointing to this skill and the state path. Use the instruction-file convention recognized by the host agent.
 - Include a short fallback telling a session without the skill to read the state and reconcile it against Git before working.
-- Keep the actual project facts and conventions in the state, retaining nested `AGENTS.md` only for genuinely local rules.
+- Keep the actual project facts and conventions in the state, retaining nested instruction files only for genuinely local rules.
 - Do not create, rewrite, or remove instruction files unless the user authorized that repository-level change.
 
 ## Finish maintenance

@@ -1,47 +1,58 @@
 # Maintain Project State
 
+English | [简体中文](README.zh-CN.md)
+
 <img src="assets/icon.png" alt="Maintain Project State" width="128" height="128">
 
-为 Codex 跨会话继续工作维护简洁、有证据支持的项目快照。这是独立 skill 仓库，不包含插件清单、MCP 或 hooks。
+Maintain a concise project snapshot grounded in repository evidence, so coding agents can orient, resume work, and hand off across sessions.
 
-状态文件是导航和交接材料；源码、测试、日志及已接受的设计文档仍是权威依据。
+The snapshot records the project's purpose, architecture, conventions, implemented capabilities, active work, risks, decisions, and verification boundaries. Source code, tests, logs, and accepted design documents remain authoritative.
 
-## 安装
+## Compatibility
 
-仓库地址：[worldtheater/maintain-project-state](https://github.com/worldtheater/maintain-project-state)。版本：`v0.1.1`。
+This skill follows the [Agent Skills format](https://agentskills.io/specification). Its workflow requires access to project files and Git; updates require permission to write the selected state file. Skill discovery, installation locations, and project instruction files depend on the host agent.
 
-在 Codex 中请求：
+The core workflow has no Codex-specific API dependency. `agents/openai.yaml` supplies optional Codex presentation metadata. **Only Codex has been tested; other agents have not been validated.**
+
+## Installation
+
+Repository: [worldtheater/maintain-project-state](https://github.com/worldtheater/maintain-project-state).
+
+For other agents, install the repository's root skill directory using the host's supported Agent Skills mechanism. Include `SKILL.md`, `assets/`, and `LICENSE`; retain `agents/` when using Codex presentation metadata. Do not copy `.git`.
+
+### Codex
+
+Ask Codex:
 
 ```text
-$skill-installer 从 https://github.com/worldtheater/maintain-project-state 安装仓库根目录的 maintain-project-state skill
+Use $skill-installer to install maintain-project-state from the root of https://github.com/worldtheater/maintain-project-state.
 ```
 
-也可手动安装：克隆仓库，将包含 `SKILL.md` 的目录复制到 `~/.agents/skills/maintain-project-state/`（个人使用），或目标项目的 `.agents/skills/maintain-project-state/`（项目使用）。复制 `SKILL.md`、`agents/`、`assets/` 和 `LICENSE`，不要复制 `.git`。`agents/openai.yaml` 提供名称、图标和起始提示词；技能正文保持在根目录 `SKILL.md`。
+For manual installation, clone the repository and copy `SKILL.md`, `agents/`, `assets/`, and `LICENSE` into either:
 
-安装后开始新的 Codex 会话；客户端未显示时重启。通过 `/skills` 或 `$maintain-project-state` 查找和调用。
+- `~/.agents/skills/maintain-project-state/` for personal use.
+- `.agents/skills/maintain-project-state/` in the target project for project use.
 
-## 使用
+Start a new conversation after installation. If the skill does not appear, restart Codex. Find it through `/skills` or invoke `$maintain-project-state`. See the [Codex skills documentation](https://developers.openai.com/codex/skills) for supported locations.
 
-- “查看项目进展并核对相关证据，不修改文件。”
-- “初始化当前仓库的项目状态。”
-- “更新项目状态，为换会话继续工作做交接。”
+## Usage
 
-默认状态路径为项目根目录的 `.codex/project-state.md`；用户或项目指定的路径优先。
+- “Review the project's current state and relevant evidence without editing files.”
+- “Initialize a project-state snapshot for this repository.”
+- “Update the project state for a handoff to another session.”
 
-查询只读；初始化和维护需要用户或仓库指令授权。实现、验证和未提交工作分别记录。skill 不授权自动提交、推送或修改仓库指令文件，也不会解除沙箱写入限制。
+The default path is `.codex/project-state.md` at the project root. It is a configurable file-location convention; user- or project-specified paths take precedence. Share the same state file across agents.
 
-也可从 [v0.1.1 源码 ZIP](https://github.com/worldtheater/maintain-project-state/archive/refs/tags/v0.1.1.zip) 下载，解压后按上面的手动安装方式复制文件。
+Status queries are read-only. Initialization and maintenance require user or repository authorization. Keep implementation, verification, and uncommitted work distinct. The skill does not authorize automatic commits, pushes, or changes to repository instruction files, and it does not bypass filesystem permissions.
 
-## 更新
+## Updates and verification
 
-维护者修改 `SKILL.md` 并测试后提交、推送到 GitHub。已安装的 skill 是本地副本，不保证自动同步；使用者需要重新安装或明确更新本地副本。覆盖前请保留自己的修改。
+Installed skills are local copies and may need explicit reinstallation or updates. Preserve local modifications before replacing them.
 
-## 验证
+[TESTING.md](TESTING.md) records the ten behavior scenarios and GitHub installation checks performed with Codex CLI for the published `v0.1.1` snapshot. Those historical results do not establish compatibility with other agents. This portability and documentation revision has format and document checks; the behavior suite has not been rerun.
 
-见 [TESTING.md](TESTING.md)，其中记录当前独立 skill 布局的安装与行为验证，以及尚未覆盖的范围。
+The earlier [v0.1.1 source ZIP](https://github.com/worldtheater/maintain-project-state/archive/refs/tags/v0.1.1.zip) remains available as the tested snapshot. Install from the default branch for the current documentation and positioning.
 
-## 许可
+## License
 
-作者：**worldtheater**。
-
-采用 [MIT License](LICENSE)，允许使用、修改和再分发；需保留版权与许可声明。
+Author: **worldtheater**. Released under the [MIT License](LICENSE); retain the copyright and license notice when redistributing.
